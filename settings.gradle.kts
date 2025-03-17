@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "deviceCatelog"
+rootProject.name = "devicecatalog"
 include(":app")

@@ -13,7 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.devicecatalog.presentation.ui.theme.DeviceCatelogTheme
+import com.example.devicecatalog.presentation.ui.theme.DeviceCatalogTheme
 import com.example.devicecatalog.presentation.viewmodel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DeviceCatelogTheme {
+            DeviceCatalogTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
