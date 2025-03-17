@@ -1,4 +1,4 @@
-package com.example.devicecatelog.ui.theme
+package com.example.devicecatalog.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

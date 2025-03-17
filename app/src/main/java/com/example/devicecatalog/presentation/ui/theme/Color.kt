@@ -1,4 +1,4 @@
-package com.example.devicecatelog.ui.theme
+package com.example.devicecatalog.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

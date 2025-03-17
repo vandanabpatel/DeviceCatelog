@@ -1,4 +1,4 @@
-package com.example.devicecatelog
+package com.example.devicecatalog
 
 import org.junit.Test
 
