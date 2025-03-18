@@ -1,5 +1,7 @@
 package com.example.devicecatalog.presentation.viewmodel
 
+import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.devicecatalog.model.ProductModel
@@ -14,8 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val repository: Repository
 ) : ViewModel() {
+
+    private val id = savedStateHandle.get<Int>("id")
 
     private val _productDetailsState: MutableStateFlow<ApiState<ProductModel>> =
         MutableStateFlow(ApiState.Loading)
@@ -27,7 +32,8 @@ class ProductDetailViewModel @Inject constructor(
 
     private fun getProductDetails() {
         viewModelScope.launch(Dispatchers.IO) {
-            _productDetailsState.value = repository.getProductDetails()
+            Log.e("ProductDetailViewModel", "Id:${id ?: 1}")
+            _productDetailsState.value = repository.getProductDetails(id ?: 1)
         }
     }
 }

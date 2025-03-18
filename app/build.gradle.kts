@@ -83,6 +83,7 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
+    implementation(libs.loggingInterceptor)
     implementation(libs.kotlinx.serialization.converter)
     implementation(libs.coroutines.android)
     implementation(libs.coroutines.core)

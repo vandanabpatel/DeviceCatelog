@@ -17,7 +17,7 @@
         android:theme="@style/Theme.DeviceCatalog"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.ui.MainActivity"
+            android:name=".presentation.ui.screen.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.DeviceCatalog">
             <intent-filter>

@@ -5,5 +5,5 @@ import com.example.devicecatalog.utils.ApiState
 
 interface Repository {
     suspend fun getProduct(): ApiState<ArrayList<ProductModel>>
-    suspend fun getProductDetails(): ApiState<ProductModel>
+    suspend fun getProductDetails(id: Int): ApiState<ProductModel>
 }
