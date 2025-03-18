@@ -85,6 +85,18 @@ fun ProductScreen(
                                     Text(
                                         "Name: " + product.name,
                                     )
+                                    product.data?.let { it ->
+                                        it.color?.let {
+                                            Text(
+                                                "Color: $it",
+                                            )
+                                        }
+                                        it.capacity?.let {
+                                            Text(
+                                                "Capacity: $it",
+                                            )
+                                        }
+                                    }
                                 }
                             }
                         }

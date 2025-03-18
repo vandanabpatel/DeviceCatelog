@@ -3,10 +3,10 @@ package com.example.devicecatalog.presentation.ui.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -58,20 +58,39 @@ fun ProductDetailsScreen(navController: NavController?, product: ApiState<Produc
                 is ApiState.Success -> {
                     val data = product.data
 
-                    Card(
-                        shape = RoundedCornerShape(10.dp),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-                        modifier = Modifier.wrapContentSize()
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .padding(contentPadding),
                     ) {
-                        Column(
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
+                        Card(
+                            shape = RoundedCornerShape(10.dp),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+                            modifier = Modifier.fillMaxWidth()
                         ) {
-                            Text(
-                                "Name: " + data.name,
-                            )
+                            Column(
+                                verticalArrangement = Arrangement.SpaceBetween,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
+                            ) {
+                                Text(
+                                    "Name: " + data.name,
+                                )
+                                data.data?.let { it ->
+                                    it.color?.let {
+                                        Text(
+                                            "Color: $it",
+                                        )
+                                    }
+                                    it.capacity?.let {
+                                        Text(
+                                            "Capacity: $it",
+                                        )
+                                    }
+                                }
+                            }
                         }
                     }
                 }

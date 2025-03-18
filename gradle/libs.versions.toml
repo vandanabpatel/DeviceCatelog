@@ -2,7 +2,6 @@
 agp = "8.9.0"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
-junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
@@ -16,9 +15,16 @@ dagger-hilt = "2.55"
 navigation-compose = "2.8.9"
 ksp = "2.1.10-1.0.31"
 
+junit = "4.13.2"
+core = "2.2.0"
+testCoroutines = "1.10.1"
+mockk = "1.13.5"
+mockito = "5.2.0"
+mockitoKotlin = "5.0.0"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -49,6 +55,14 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 
 # Navigation Compose
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+
+# Test
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+test-core = { group = "androidx.arch.core", name = "core-testing", version.ref = "core" }
+test-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "testCoroutines" }
+test-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+test-mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+test-mockitoKotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
