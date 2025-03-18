@@ -22,6 +22,7 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -30,18 +31,19 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
         // Create a cache directory and set cache size
-        val cacheDir = File(context.cacheDir, "http_cache")
-        val cache = Cache(cacheDir, 10L * 1024L * 1024L) // 10 MB cache size
+        val httpCacheDirectory = File(context.cacheDir, "http_cache")
+        val cache = Cache(httpCacheDirectory, 10L * 1024L * 1024L) // 10 MB cache size
 
         return OkHttpClient.Builder().apply {
             if (BuildConfig.DEBUG) {
                 val logging = HttpLoggingInterceptor()
                 logging.level = HttpLoggingInterceptor.Level.BODY
                 addInterceptor(logging)
+
             }
 
             // Add the CacheInterceptor to manage cache control
-            addInterceptor(CacheInterceptor())
+            addNetworkInterceptor(CacheInterceptor())
 
             // Set cache for the client
             cache(cache)
@@ -69,29 +71,16 @@ object NetworkModule {
 
     class CacheInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
-            val request = chain.request()
-//            val originalResponse = chain.proceed(request)
-//
-//            val shouldUseCache = request.header(CACHE_CONTROL_HEADER) != CACHE_CONTROL_NO_CACHE
-//            if (!shouldUseCache) return originalResponse
-//
-//            val cacheControl = CacheControl.Builder()
-//                .maxAge(5, TimeUnit.MINUTES)
-//                .build()
-//
-//            return originalResponse.newBuilder()
-//                .header(CACHE_CONTROL_HEADER, cacheControl.toString())
-//                .build()
-
-            ////
             val response = chain.proceed(chain.request())
 
-            // Control caching behavior
+            val cacheControl = CacheControl.Builder()
+                .maxAge(5, TimeUnit.MINUTES) // 5 minutes cache
+                .build()
+
             return response.newBuilder()
-                .header(
-                    "Cache-Control",
-                    "public, max-age=" + TimeUnit.MINUTES.toSeconds(5)
-                ) // 5 minutes cache duration
+                .removeHeader("Pragma")
+                .removeHeader("Cache-Control")
+                .header("Cache-Control", cacheControl.toString())
                 .build()
         }
     }
